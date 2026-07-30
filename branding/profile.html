@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:800px; height:800px; overflow:hidden; }
+  body {
+    background: radial-gradient(circle at 50% 38%, #16325c 0%, #0b1f3a 62%, #081527 100%);
+    display:flex; align-items:center; justify-content:center;
+    font-family: 'Arial', sans-serif;
+  }
+  svg { display:block; }
+</style>
+</head>
+<body>
+<svg width="800" height="800" viewBox="0 0 800 800">
+
+  <!-- subtle isometric grid backdrop -->
+  <g opacity="0.10" stroke="#8fe3d8" stroke-width="1.5">
+    <path d="M0 560 L800 240 M0 620 L800 300 M0 680 L800 360 M0 740 L800 420 M0 800 L800 480"/>
+    <path d="M0 240 L800 560 M0 180 L800 500 M0 120 L800 440 M0 60 L800 380 M0 0 L800 320"/>
+  </g>
+
+  <!-- circular safe-area guide (not rendered, just composition reference) -->
+
+  <!-- outer glow ring -->
+  <circle cx="400" cy="400" r="360" fill="none" stroke="#2dd4c4" stroke-width="6" opacity="0.35"/>
+
+  <!-- ================= CAT MASCOT (geometric flat vector) ================= -->
+  <g transform="translate(400,430)">
+
+    <!-- tail curling behind -->
+    <path d="M170,140 C260,130 300,40 250,-40 C230,-72 190,-70 185,-40"
+          fill="none" stroke="#ffb63d" stroke-width="34" stroke-linecap="round"/>
+
+    <!-- ears -->
+    <polygon points="-160,-150 -70,-235 -40,-95" fill="#12294d"/>
+    <polygon points="160,-150 70,-235 40,-95" fill="#12294d"/>
+    <polygon points="-145,-155 -95,-205 -78,-118" fill="#ff8f70"/>
+    <polygon points="145,-155 95,-205 78,-118" fill="#ff8f70"/>
+
+    <!-- head -->
+    <circle cx="0" cy="-40" r="205" fill="#16325c" stroke="#2dd4c4" stroke-width="6"/>
+
+    <!-- cheeks/muzzle base -->
+    <ellipse cx="0" cy="60" rx="150" ry="95" fill="#0f2647"/>
+
+    <!-- eyes (curious, wide, sparkly) -->
+    <g>
+      <ellipse cx="-78" cy="-55" rx="46" ry="52" fill="#f4f1e8"/>
+      <ellipse cx="78" cy="-55" rx="46" ry="52" fill="#f4f1e8"/>
+      <circle cx="-70" cy="-45" r="24" fill="#0b1f3a"/>
+      <circle cx="86" cy="-45" r="24" fill="#0b1f3a"/>
+      <circle cx="-62" cy="-56" r="8" fill="#ffffff"/>
+      <circle cx="94" cy="-56" r="8" fill="#ffffff"/>
+    </g>
+
+    <!-- nose -->
+    <polygon points="-16,20 16,20 0,42" fill="#ff6b5b"/>
+    <!-- mouth -->
+    <path d="M0,42 Q0,58 -30,58" fill="none" stroke="#f4f1e8" stroke-width="7" stroke-linecap="round"/>
+    <path d="M0,42 Q0,58 30,58" fill="none" stroke="#f4f1e8" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- whiskers -->
+    <g stroke="#8fe3d8" stroke-width="5" stroke-linecap="round" opacity="0.9">
+      <line x1="-120" y1="10" x2="-235" y2="-4"/>
+      <line x1="-120" y1="30" x2="-238" y2="30"/>
+      <line x1="120" y1="10" x2="235" y2="-4"/>
+      <line x1="120" y1="30" x2="238" y2="30"/>
+    </g>
+  </g>
+
+  <!-- ================= MAGNIFYING GLASS w/ GEAR (curiosity + mechanisms) ================= -->
+  <g transform="translate(300,610) rotate(-18)">
+    <circle cx="0" cy="0" r="92" fill="#0b1f3a" stroke="#ffb63d" stroke-width="14"/>
+    <circle cx="0" cy="0" r="92" fill="none" stroke="#2dd4c4" stroke-width="3" opacity="0.6"/>
+    <rect x="60" y="-14" width="110" height="28" rx="14" fill="#ffb63d" transform="rotate(45 60 0)"/>
+
+    <!-- gear inside lens -->
+    <g fill="#2dd4c4">
+      <circle cx="0" cy="0" r="46"/>
+      <g fill="#0b1f3a">
+        <circle cx="0" cy="0" r="18"/>
+      </g>
+      <g>
+        <rect x="-8" y="-64" width="16" height="26" rx="4"/>
+        <rect x="-8" y="38" width="16" height="26" rx="4"/>
+        <rect x="-64" y="-8" width="26" height="16" rx="4"/>
+        <rect x="38" y="-8" width="26" height="16" rx="4"/>
+        <rect x="-52" y="-52" width="16" height="26" rx="4" transform="rotate(45 -44 -39)"/>
+        <rect x="36" y="-52" width="16" height="26" rx="4" transform="rotate(-45 44 -39)"/>
+        <rect x="-52" y="26" width="16" height="26" rx="4" transform="rotate(-45 -44 39)"/>
+        <rect x="36" y="26" width="16" height="26" rx="4" transform="rotate(45 44 39)"/>
+      </g>
+    </g>
+  </g>
+
+</svg>
+</body>
+</html>

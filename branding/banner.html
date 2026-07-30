@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:2560px; height:1440px; overflow:hidden; }
+  body {
+    background: linear-gradient(135deg, #0b1f3a 0%, #12294d 45%, #16325c 100%);
+    font-family: Arial, sans-serif;
+  }
+  svg { display:block; }
+  .title {
+    font-family: Arial, sans-serif;
+    font-weight: 900;
+    fill: #f4f1e8;
+    letter-spacing: 2px;
+  }
+  .sub {
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    fill: #ffb63d;
+    letter-spacing: 6px;
+  }
+  .tag {
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    fill: #8fe3d8;
+  }
+  .handle {
+    font-family: monospace;
+    font-weight: 700;
+    fill: #6ea3c9;
+  }
+</style>
+</head>
+<body>
+<svg width="2560" height="1440" viewBox="0 0 2560 1440">
+
+  <!-- background isometric grid, fades toward center safe area -->
+  <g opacity="0.14" stroke="#8fe3d8" stroke-width="2">
+    <path d="M-200 1440 L2760 400 M-200 1300 L2760 260 M-200 1160 L2760 120 M-200 1580 L2760 540"/>
+    <path d="M-200 0 L2760 1040 M-200 -140 L2760 900 M-200 140 L2760 1180 M-200 280 L2760 1320"/>
+  </g>
+
+  <!-- corner gear motifs (large, decorative, sit outside safe zone) -->
+  <g fill="#2dd4c4" opacity="0.55" transform="translate(190,1180) scale(2.6)">
+    <circle r="46"/>
+    <circle r="18" fill="#0b1f3a"/>
+    <g>
+      <rect x="-8" y="-64" width="16" height="26" rx="4"/>
+      <rect x="-8" y="38" width="16" height="26" rx="4"/>
+      <rect x="-64" y="-8" width="26" height="16" rx="4"/>
+      <rect x="38" y="-8" width="26" height="16" rx="4"/>
+      <rect x="-52" y="-52" width="16" height="26" rx="4" transform="rotate(45 -44 -39)"/>
+      <rect x="36" y="-52" width="16" height="26" rx="4" transform="rotate(-45 44 -39)"/>
+      <rect x="-52" y="26" width="16" height="26" rx="4" transform="rotate(-45 -44 39)"/>
+      <rect x="36" y="26" width="16" height="26" rx="4" transform="rotate(45 44 39)"/>
+    </g>
+  </g>
+  <g fill="#ffb63d" opacity="0.4" transform="translate(2440,260) scale(1.8)">
+    <circle r="46"/>
+    <circle r="18" fill="#0b1f3a"/>
+    <g>
+      <rect x="-8" y="-64" width="16" height="26" rx="4"/>
+      <rect x="-8" y="38" width="16" height="26" rx="4"/>
+      <rect x="-64" y="-8" width="26" height="16" rx="4"/>
+      <rect x="38" y="-8" width="26" height="16" rx="4"/>
+      <rect x="-52" y="-52" width="16" height="26" rx="4" transform="rotate(45 -44 -39)"/>
+      <rect x="36" y="-52" width="16" height="26" rx="4" transform="rotate(-45 44 -39)"/>
+      <rect x="-52" y="26" width="16" height="26" rx="4" transform="rotate(-45 -44 39)"/>
+      <rect x="36" y="26" width="16" height="26" rx="4" transform="rotate(45 44 39)"/>
+    </g>
+  </g>
+
+  <!-- soft vignette top/bottom so all-device crop still looks intentional -->
+  <rect x="0" y="0" width="2560" height="200" fill="#0b1f3a" opacity="0.35"/>
+  <rect x="0" y="1240" width="2560" height="200" fill="#0b1f3a" opacity="0.35"/>
+
+  <!-- ===================== CAT MASCOT (left, mostly outside strict safe zone but visible on wide/desktop) ===================== -->
+  <g transform="translate(330,760) scale(1.05)">
+    <path d="M170,140 C260,130 300,40 250,-40 C230,-72 190,-70 185,-40"
+          fill="none" stroke="#ffb63d" stroke-width="30" stroke-linecap="round"/>
+    <polygon points="-160,-150 -70,-235 -40,-95" fill="#0f2647"/>
+    <polygon points="160,-150 70,-235 40,-95" fill="#0f2647"/>
+    <polygon points="-145,-155 -95,-205 -78,-118" fill="#ff8f70"/>
+    <polygon points="145,-155 95,-205 78,-118" fill="#ff8f70"/>
+    <circle cx="0" cy="-40" r="205" fill="#16325c" stroke="#2dd4c4" stroke-width="6"/>
+    <ellipse cx="0" cy="60" rx="150" ry="95" fill="#0f2647"/>
+    <ellipse cx="-78" cy="-55" rx="46" ry="52" fill="#f4f1e8"/>
+    <ellipse cx="78" cy="-55" rx="46" ry="52" fill="#f4f1e8"/>
+    <circle cx="-70" cy="-45" r="24" fill="#0b1f3a"/>
+    <circle cx="86" cy="-45" r="24" fill="#0b1f3a"/>
+    <circle cx="-62" cy="-56" r="8" fill="#ffffff"/>
+    <circle cx="94" cy="-56" r="8" fill="#ffffff"/>
+    <polygon points="-16,20 16,20 0,42" fill="#ff6b5b"/>
+    <path d="M0,42 Q0,58 -30,58" fill="none" stroke="#f4f1e8" stroke-width="7" stroke-linecap="round"/>
+    <path d="M0,42 Q0,58 30,58" fill="none" stroke="#f4f1e8" stroke-width="7" stroke-linecap="round"/>
+    <g stroke="#8fe3d8" stroke-width="5" stroke-linecap="round" opacity="0.9">
+      <line x1="-120" y1="10" x2="-235" y2="-4"/>
+      <line x1="-120" y1="30" x2="-238" y2="30"/>
+      <line x1="120" y1="10" x2="235" y2="-4"/>
+      <line x1="120" y1="30" x2="238" y2="30"/>
+    </g>
+    <!-- little magnifying glass held up, curiosity pose -->
+    <g transform="translate(210,60) rotate(20)">
+      <circle cx="0" cy="0" r="52" fill="#16325c" stroke="#ffb63d" stroke-width="9"/>
+      <circle cx="0" cy="0" r="24" fill="#2dd4c4"/>
+      <rect x="34" y="-8" width="62" height="16" rx="8" fill="#ffb63d" transform="rotate(45 34 0)"/>
+    </g>
+  </g>
+
+  <!-- ===================== TEXT BLOCK (centered in the ~1546x423 safe area) ===================== -->
+  <g text-anchor="middle">
+    <text x="1450" y="640" font-size="150" class="title">CURIOSEANDO</text>
+    <text x="1450" y="740" font-size="72" class="sub">DESCUBRIÓ EL GATO</text>
+    <text x="1450" y="820" font-size="42" class="tag">Cómo funciona todo lo que te rodea 🔧🐾</text>
+    <text x="1450" y="880" font-size="30" class="handle">@curioseandodescubrioelgato</text>
+  </g>
+
+  <!-- thin accent rule under text -->
+  <rect x="1120" y="905" width="660" height="5" rx="2.5" fill="#2dd4c4" opacity="0.7"/>
+
+</svg>
+</body>
+</html>
