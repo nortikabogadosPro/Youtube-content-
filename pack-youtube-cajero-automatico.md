@@ -12,15 +12,14 @@ Video de 3:00 (18 bloques), estilo vector isométrico, narración en castellano 
 
 Reglas aplicadas: <60 caracteres, palabra clave al inicio o al final, gancho de curiosidad, un solo emoji máximo.
 
-## 2. Miniaturas
+## 2. Miniaturas (test A/B/C)
 
-Dos variantes 4K generadas (elegir por CTR real con el test A/B de YouTube):
-- **V1 "Cutaway":** cajero abierto en corte con bóveda brillante y billete volando hacia cámara.
-- **V2 "Split":** cajero partido en dos — exterior inocente vs. tripas secretas iluminadas.
+Tres variantes listas para probar en el test nativo de miniaturas de YouTube Studio:
+- **A "Cutaway"** (4K, IA): cajero abierto en corte con bóveda brillante y billete volando hacia cámara. Sin texto — pensada para overlay «200.000€ AQUÍ DENTRO».
+- **B "Split"** (4K, IA): cajero partido en dos — exterior inocente vs. tripas secretas iluminadas. Overlay sugerido: «NO ES LO QUE CREES».
+- **C "Texto directo"** (`branding/thumb_C_cajero_1920x1080.png`, vectorial, texto ya incrustado): cajero simplificado + titular «200.000€ ESCONDIDOS AQUÍ DENTRO» en grande. Estilo más "clickbait" directo, para contrastar contra las dos anteriores más visuales/sutiles.
 
-**Texto overlay recomendado** (añadir encima, estilo Anton blanco con borde negro grueso):
-- V1: «200.000€ AQUÍ DENTRO»
-- V2: «NO ES LO QUE CREES»
+Recomendación: sube las 3 al test A/B/C de Studio (permite hasta 3) y deja que corra ~48-72h antes de fijar la ganadora por CTR real.
 
 ## 3. Descripción SEO
 

@@ -1,0 +1,43 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { width:1080px; height:1920px; overflow:hidden; font-family: Arial, sans-serif; }
+body { background: linear-gradient(160deg, #0b1f3a 0%, #12294d 50%, #16325c 100%); }
+</style></head><body>
+<svg width="1080" height="1920" viewBox="0 0 1080 1920">
+  <g opacity="0.12" stroke="#8fe3d8" stroke-width="2">
+    <path d="M-100 1920 L1180 1400 M-100 1700 L1180 1180 M-100 1480 L1180 960"/>
+    <path d="M-100 300 L1180 700 M-100 100 L1180 500 M-100 -100 L1180 300"/>
+  </g>
+
+  <text x="540" y="240" text-anchor="middle" font-size="100" font-weight="900" fill="#ffb63d">40</text>
+  <text x="540" y="350" text-anchor="middle" font-size="64" font-weight="900" fill="#f4f1e8" letter-spacing="1">MILISEGUNDOS</text>
+
+  <!-- car + airbag icon -->
+  <g transform="translate(540,1000)">
+    <!-- simplified car side silhouette -->
+    <path d="M-260,60 L-260,10 L-190,-40 L-40,-60 L120,-40 L220,10 L260,10 L260,60 Z"
+          fill="#16325c" stroke="#2dd4c4" stroke-width="8"/>
+    <circle cx="-150" cy="70" r="42" fill="#0b1f3a" stroke="#ffb63d" stroke-width="8"/>
+    <circle cx="150" cy="70" r="42" fill="#0b1f3a" stroke="#ffb63d" stroke-width="8"/>
+
+    <!-- airbag inflating burst -->
+    <g>
+      <circle cx="-70" cy="-70" r="130" fill="#f4f1e8" opacity="0.95"/>
+      <circle cx="-70" cy="-70" r="130" fill="none" stroke="#2dd4c4" stroke-width="6"/>
+      <g stroke="#ffb63d" stroke-width="10" stroke-linecap="round" opacity="0.9">
+        <line x1="-70" y1="-230" x2="-70" y2="-190"/>
+        <line x1="40" y1="-160" x2="10" y2="-130"/>
+        <line x1="-180" y1="-160" x2="-150" y2="-130"/>
+        <line x1="70" y1="-70" x2="30" y2="-70"/>
+        <line x1="-210" y1="-70" x2="-170" y2="-70"/>
+      </g>
+    </g>
+  </g>
+
+  <text x="540" y="1650" text-anchor="middle" font-size="52" font-weight="700" fill="#2dd4c4">MÁS RÁPIDO QUE</text>
+  <text x="540" y="1715" text-anchor="middle" font-size="52" font-weight="700" fill="#2dd4c4">UN PARPADEO</text>
+
+  <text x="540" y="1860" text-anchor="middle" font-size="26" font-family="monospace" font-weight="700" fill="#6ea3c9">@curioseandodescubrioelgato</text>
+</svg>
+</body></html>

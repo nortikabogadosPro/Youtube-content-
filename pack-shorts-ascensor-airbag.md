@@ -17,11 +17,14 @@ Fuentes del análisis:
 
 **Duración:** 20s | **Formato:** 9:16, 720×1280, 24fps
 
-**Título:**
+**Título (test A/B/C):**
 - A (recomendado): El freno que evita que un ascensor caiga en picado 😨
 - B: ¿Qué pasa si se rompe el cable de un ascensor?
+- C: El mecanismo que ningún ascensor puede fallar
 
-**Texto overlay (primer segundo):** «¿Y SI SE ROMPE EL CABLE?»
+**Portada/cover (opcional):** `branding/cover_short1_ascensor_1080x1920.png` — usar solo si Studio permite subir cover personalizado para el Short; si no, YouTube usa un frame del video (recomendado: el frame del cable rompiéndose, ~seg. 4).
+
+**Texto overlay (primer segundo del video):** «¿Y SI SE ROMPE EL CABLE?»
 
 **Guion (referencia):**
 1. (0-10s) Cable se rompe, alarma se dispara
@@ -34,7 +37,15 @@ Fuentes del análisis:
 #comofunciona #ascensor #curiosidades #ingenieria #shorts
 ```
 
-**Hashtags:** #shorts #comofunciona #ascensor #ingenieria #curiosidades #datoscuriosos
+**Hashtags (en descripción):** #shorts #comofunciona #ascensor #ingenieria #curiosidades #datoscuriosos
+
+**Tags (campo "Etiquetas" de Studio):**
+```
+ascensor, como funciona un ascensor, freno ascensor, gobernador centrifugo, seguridad ascensor, ingenieria mecanica, mecanismos, curiosidades, datos curiosos, ciencia, tecnologia, shorts
+```
+
+**Comentario fijado:**
+> ¿Sabías esto de los ascensores? 🛗 Cuéntame en qué máquina quieres que entremos el próximo Short.
 
 ---
 
@@ -42,11 +53,14 @@ Fuentes del análisis:
 
 **Duración:** 20s | **Formato:** 9:16, 720×1280, 24fps
 
-**Título:**
+**Título (test A/B/C):**
 - A (recomendado): Un airbag se infla más rápido de lo que parpadeas 👁️💨
 - B: Así funciona un airbag por dentro (40 milisegundos)
+- C: 40 milisegundos: lo que tarda un airbag en salvarte
 
-**Texto overlay (primer segundo):** «MÁS RÁPIDO QUE UN PARPADEO»
+**Portada/cover (opcional):** `branding/cover_short2_airbag_1080x1920.png` — mismo criterio que el Short 1; si no hay opción de subir cover, usar el frame de la explosión del airbag (~seg. 13).
+
+**Texto overlay (primer segundo del video):** «MÁS RÁPIDO QUE UN PARPADEO»
 
 **Guion (referencia):**
 1. (0-10s) Choque frontal, sensor dispara reacción química
@@ -59,12 +73,19 @@ Un choque activa un sensor que dispara una reacción química explosiva: el airb
 #comofunciona #airbag #seguridadvial #curiosidades #shorts
 ```
 
-**Hashtags:** #shorts #comofunciona #airbag #seguridadvial #curiosidades #datoscuriosos
+**Hashtags (en descripción):** #shorts #comofunciona #airbag #seguridadvial #curiosidades #datoscuriosos
+
+**Tags (campo "Etiquetas" de Studio):**
+```
+airbag, como funciona un airbag, seguridad vial, accidentes de coche, ingenieria automotriz, mecanismos, curiosidades, datos curiosos, ciencia, tecnologia, shorts
+```
+
+**Comentario fijado:**
+> ¿Te ha sorprendido? 💥 Dime qué otro sistema de seguridad quieres que expliquemos.
 
 ---
 
 ## Notas de producción
-- Sin miniatura personalizada: en Shorts, YouTube usa un frame del propio video como portada;
-  el impacto del hook ocurre dentro del video, no en una miniatura externa.
+- Portadas (covers) creadas de forma gratuita (SVG + Chromium local, sin usar Higgsfield): útiles si Studio permite subir un cover personalizado para el Short en tu región/cuenta; si esa opción no aparece, YouTube usa un frame del propio video — indica en Studio el timestamp recomendado de cada Short (ver arriba).
 - Publicar ambos el mismo día en franjas distintas (mañana y tarde) para no canibalizar alcance.
-- Enlazar en la descripción o comentario fijado al video largo del cajero automático para cross-promoción del canal.
+- Enlazar en la descripción o comentario fijado al video largo del cajero automático para cross-promoción del canal (añadir el enlace una vez esté publicado el video largo).
