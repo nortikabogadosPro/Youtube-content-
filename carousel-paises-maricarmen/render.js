@@ -1,214 +1,212 @@
 const path = require('path');
 const T = require('../carousel-maricarmen-nortik/theme.js');
-const { INK, INK2, NAVY, CREAM, GOLD, OK, RESET, PHOTO, brand, pageTag, logoMark, renderSlides } = T;
+const { INK, INK2, NAVY, CREAM, GOLD, BAD, OK, SERIF, PHOTO, brand, pageTag, eyebrow, card, logoMark, photoDuotone, renderSlides } = T;
 
 // ---------------------------------------------------------------
 // SLIDE 1 — HOOK
 // ---------------------------------------------------------------
 function slide1() {
-  return `<html><head><meta charset="utf-8"><style>${RESET}
-    .bg { position:absolute; inset:0; overflow:hidden; background:${INK}; }
-    .bg img { position:absolute; top:-330px; left:-40px; width:1160px; filter:blur(9px) grayscale(45%) brightness(0.45) contrast(1.05); transform:scale(1.05); }
-    .vign { position:absolute; inset:0; background:
-      linear-gradient(180deg, rgba(14,27,36,0.86) 0%, rgba(14,27,36,0.4) 26%, rgba(14,27,36,0.65) 58%, rgba(14,27,36,0.97) 92%); }
-    .badge { position:absolute; top:60px; left:56px; z-index:9; display:flex; align-items:center; gap:10px;
-      background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(4px);
-      padding:10px 18px 10px 14px; border-radius:30px; }
-    .badge .led { width:9px; height:9px; border-radius:50%; background:${GOLD}; box-shadow:0 0 10px ${GOLD}; }
-    .badge span { color:#fff; font-weight:800; letter-spacing:1.5px; font-size:15px; }
+  return `<html><head><meta charset="utf-8"><style>${T.RESET}
+    .badge { position:absolute; top:60px; left:56px; z-index:9; display:flex; align-items:center; gap:10px; }
+    .badge .led { width:8px; height:8px; border-radius:50%; background:${GOLD}; }
+    .badge span { color:rgba(255,255,255,0.85); font-weight:700; letter-spacing:2px; font-size:13px; text-transform:uppercase; }
     .content { position:absolute; left:56px; right:56px; bottom:150px; z-index:9; }
-    .kicker { color:${GOLD}; font-weight:900; letter-spacing:3px; font-size:24px; text-transform:uppercase; margin-bottom:18px; }
-    h1 { color:#fff; font-weight:900; font-size:70px; line-height:1.05; letter-spacing:-2.5px; }
-    h1 .hl { color:${GOLD}; }
-    .sub { color:rgba(255,255,255,0.92); font-size:29px; font-weight:600; line-height:1.42; margin-top:26px; max-width:900px; }
+    .kicker { color:${GOLD}; font-weight:700; letter-spacing:3px; font-size:15px; text-transform:uppercase; margin-bottom:20px; }
+    h1 { font-family:${SERIF}; color:#fff; font-weight:700; font-size:68px; line-height:1.1; letter-spacing:-0.5px; }
+    h1 .hl { color:${GOLD}; font-style:italic; }
+    .sub { color:rgba(255,255,255,0.85); font-size:25px; font-weight:500; line-height:1.5; margin-top:26px; max-width:880px; }
     .cta { position:absolute; bottom:52px; left:56px; right:56px; z-index:9; display:flex; align-items:center; justify-content:space-between; }
-    .cta .pill { background:${GOLD}; color:${INK}; font-weight:900; letter-spacing:1.5px; font-size:20px; padding:18px 30px; border-radius:40px; }
-    .cta .who { display:flex; align-items:center; gap:10px; }
-    .cta .who span { color:rgba(255,255,255,0.6); font-weight:700; font-size:15px; letter-spacing:1.5px; }
+    .pill { background:${GOLD}; color:${INK}; font-weight:700; letter-spacing:2px; font-size:14px; text-transform:uppercase; padding:17px 28px; border-radius:3px; }
+    .who { display:flex; align-items:center; gap:10px; }
+    .who span { color:rgba(255,255,255,0.55); font-weight:700; font-size:13px; letter-spacing:1.5px; }
   </style></head><body><div class="stage">
-    <div class="bg"><img src="file://${PHOTO}"></div>
-    <div class="vign"></div>
-    <div class="badge"><div class="led"></div><span>ANÁLISIS COMPARADO</span></div>
-    ${pageTag('01 / 08', 'rgba(255,255,255,0.6)')}
+    ${photoDuotone(PHOTO)}
+    <div class="badge"><div class="led"></div><span>Análisis comparado · 6 países</span></div>
+    ${pageTag('01 / 10')}
     <div class="content">
-      <div class="kicker">Mismo caso, distinto país</div>
-      <h1>En Francia, esto sería <span class="hl">ilegal</span>.</h1>
-      <div class="sub">Juristas señalan que el desahucio de Mari Carmen sería casi impensable en gran parte de Europa. Vemos qué habría pasado en 4 países distintos.</div>
+      <div class="kicker">Mismo caso, seis países distintos</div>
+      <h1>En Polonia, la ley la habría <span class="hl">protegido por su edad</span>.</h1>
+      <div class="sub">El desahucio de Mari Carmen sería casi impensable en gran parte de Europa. Comparamos Alemania, Francia, Polonia, Holanda, Suecia y Noruega.</div>
     </div>
-    <div class="cta"><div class="pill">DESLIZA Y COMPARA →</div><div class="who">${logoMark('light', 28)}<span>NORTIK ABOGADOS</span></div></div>
+    <div class="cta"><div class="pill">Desliza y compara →</div><div class="who">${logoMark('light', 24)}<span>NORTIK ABOGADOS</span></div></div>
   </div></body></html>`;
 }
 
 // ---------------------------------------------------------------
-// SLIDE 2 — ESPAÑA HOY (bridge / recordatorio)
+// SLIDE 2 — ESPAÑA HOY (bridge)
 // ---------------------------------------------------------------
 function slide2() {
-  return `<html><head><meta charset="utf-8"><style>${RESET}
+  return `<html><head><meta charset="utf-8"><style>${T.RESET}
     .stage { background:${INK}; }
     .head { position:absolute; top:150px; left:56px; right:56px; z-index:5; }
-    .eyebrow { color:${GOLD}; font-weight:900; letter-spacing:3px; font-size:20px; text-transform:uppercase; }
-    h1 { color:#fff; font-weight:900; font-size:54px; line-height:1.1; letter-spacing:-1.5px; margin-top:16px; }
-    .body { color:rgba(255,255,255,0.85); font-size:28px; font-weight:600; line-height:1.5; margin-top:26px; max-width:900px; }
-    .verdict { position:absolute; left:56px; right:56px; bottom:120px; z-index:5; background:rgba(217,83,79,0.1);
-      border:1.5px solid rgba(217,83,79,0.3); border-radius:20px; padding:30px 32px; }
-    .verdict .lbl { color:#e08a86; font-weight:900; letter-spacing:2px; font-size:16px; margin-bottom:10px; }
-    .verdict p { color:#fff; font-weight:700; font-size:25px; line-height:1.4; }
+    h1 { font-family:${SERIF}; color:#fff; font-weight:700; font-size:48px; line-height:1.16; letter-spacing:-0.3px; margin-top:16px; }
+    .body { color:rgba(255,255,255,0.82); font-size:25px; font-weight:500; line-height:1.5; margin-top:26px; max-width:900px; }
+    .cardwrap { position:absolute; left:56px; right:56px; bottom:140px; z-index:5; }
   </style></head><body><div class="stage">
     ${brand()}
-    ${pageTag('02 / 08')}
+    ${pageTag('02 / 10')}
     <div class="head">
-      <div class="eyebrow">ESPAÑA, 2026</div>
-      <h1>87 años, sin alternativa de vivienda, y aun así el desalojo siguió adelante</h1>
-      <div class="body">La ley española permitía ejecutarlo: la subrogación no cumplía un requisito técnico, y no existía ninguna norma que obligara a garantizarle un techo antes de sacarla de su casa.</div>
+      ${eyebrow('España, 2026')}
+      <h1>87 años, sin alternativa de vivienda, y el desalojo siguió adelante</h1>
+      <div class="body">La ley española lo permitía: no existe ninguna norma que obligue a garantizarle un techo antes de sacarla de su casa.</div>
     </div>
-    <div class="verdict">
-      <div class="lbl">EN ESPAÑA</div>
-      <p>La vulnerabilidad frena el proceso — pero no lo puede parar de forma indefinida.</p>
-    </div>
+    <div class="cardwrap">${card({ label: 'En España', text: 'La vulnerabilidad frena el proceso — pero no lo puede parar de forma indefinida.', tone: 'bad' })}</div>
   </div></body></html>`;
 }
 
 // ---------------------------------------------------------------
 // Reusable "country" slide
 // ---------------------------------------------------------------
-function countrySlide({ num, tag, title, body, verdictLabel, verdictText, verdictColor = GOLD, bg = INK2 }) {
-  return `<html><head><meta charset="utf-8"><style>${RESET}
-    .stage { background:${bg}; background-image: radial-gradient(rgba(143,199,166,0.08) 1.6px, transparent 1.6px);
-      background-size: 30px 30px; }
+function countrySlide({ num, flag, country, title, body, verdict, bg = INK2, dark = true }) {
+  return `<html><head><meta charset="utf-8"><style>${T.RESET}
+    .stage { background:${bg}; }
+    .tag { position:absolute; top:60px; right:56px; font-family:${SERIF}; font-style:italic; font-weight:700; font-size:20px;
+      color:${dark ? 'rgba(255,255,255,0.4)' : 'rgba(27,46,59,0.45)'}; z-index:9; }
     .head { position:absolute; top:150px; left:56px; right:56px; z-index:5; }
-    .eyebrow { display:inline-block; background:rgba(143,199,166,0.16); color:${GOLD}; font-weight:900; letter-spacing:3px;
-      font-size:18px; padding:9px 18px; border-radius:8px; margin-bottom:24px; }
-    h1 { color:#fff; font-weight:900; font-size:50px; line-height:1.12; letter-spacing:-1.5px; }
-    .body { color:rgba(255,255,255,0.85); font-size:27px; font-weight:600; line-height:1.5; margin-top:26px; max-width:900px; }
-    .body b { color:#fff; }
-    .verdict { position:absolute; left:56px; right:56px; bottom:120px; z-index:5; background:rgba(143,199,166,0.12);
-      border:1.5px solid rgba(143,199,166,0.35); border-radius:20px; padding:30px 32px; }
-    .verdict .lbl { color:${verdictColor}; font-weight:900; letter-spacing:2px; font-size:16px; margin-bottom:10px; }
-    .verdict p { color:#fff; font-weight:700; font-size:25px; line-height:1.4; }
+    h1 { font-family:${SERIF}; color:${dark ? '#fff' : NAVY}; font-weight:700; font-size:44px; line-height:1.16; letter-spacing:-0.3px; }
+    .body { color:${dark ? 'rgba(255,255,255,0.82)' : 'rgba(27,46,59,0.75)'}; font-size:23px; font-weight:500; line-height:1.5; margin-top:24px; max-width:900px; }
+    .body b { color:${dark ? '#fff' : NAVY}; font-weight:700; }
+    .cardwrap { position:absolute; left:56px; right:56px; bottom:130px; z-index:5; }
   </style></head><body><div class="stage">
-    ${brand()}
-    ${pageTag(`0${num} / 08`)}
+    ${brand(dark ? 'light' : 'dark')}
+    <div class="tag">${country}</div>
     <div class="head">
-      <div class="eyebrow">${tag}</div>
+      ${eyebrow(flag, dark ? GOLD : NAVY)}
       <h1>${title}</h1>
       <div class="body">${body}</div>
     </div>
-    <div class="verdict">
-      <div class="lbl">${verdictLabel}</div>
-      <p>${verdictText}</p>
-    </div>
+    <div class="cardwrap">${card({ label: '¿Habría evitado este desahucio?', text: verdict, tone: dark ? 'accent' : 'onLight' })}</div>
   </div></body></html>`;
 }
 
 // SLIDE 3 — FRANCIA
 function slide3() {
   return countrySlide({
-    num: 3,
-    tag: 'FRANCIA',
+    num: 3, flag: 'FRANCIA', country: 'Francia',
     title: 'Prohibido desahuciar a mayores de 65 sin techo garantizado',
     body: 'La ley francesa impide expulsar a un inquilino de más de 65 años con recursos limitados si la administración no le garantiza antes un realojo adecuado y cercano. Además, ningún desahucio puede ejecutarse entre el 1 de noviembre y el 31 de marzo (la <b>trêve hivernale</b>).',
-    verdictLabel: '¿HABRÍA EVITADO ESTE DESAHUCIO?',
-    verdictText: 'Muy probablemente sí — Maricarmen (87 años, pensión limitada) encajaría directamente en esa protección.',
+    verdict: 'Muy probablemente sí — Maricarmen (87 años, pensión limitada) encajaría directamente en esa protección.',
+    bg: INK,
   });
 }
 
 // SLIDE 4 — ALEMANIA
 function slide4() {
   return countrySlide({
-    num: 4,
-    tag: 'ALEMANIA',
+    num: 4, flag: 'ALEMANIA', country: 'Alemania',
     title: 'Un juez puede paralizar el desahucio "indefinidamente"',
     body: 'El Código Civil alemán incluye la cláusula de <b>extrema dureza (Härtefall)</b>: si el desalojo supone un perjuicio desproporcionado para una persona mayor o con discapacidad grave, el juez puede suspenderlo sin fecha. Y si aun así se ejecuta, la ley da hasta un año para buscar otra vivienda.',
-    verdictLabel: '¿HABRÍA EVITADO ESTE DESAHUCIO?',
-    verdictText: 'Probablemente — o como mínimo, lo habría alargado mucho más allá de un año.',
+    verdict: 'Probablemente — o como mínimo, lo habría alargado mucho más allá de un año.',
+    bg: CREAM, dark: false,
   });
 }
 
-// SLIDE 5 — ESTADOS UNIDOS (contraste)
+// SLIDE 5 — POLONIA
 function slide5() {
   return countrySlide({
-    num: 5,
-    tag: 'ESTADOS UNIDOS',
-    title: 'Depende radicalmente de en qué calle vivas',
-    body: 'En Nueva York o San Francisco, los mayores de 60 con más de un año en la vivienda tienen derecho a 60 días de preaviso y protección de "causa justa". Pero en muchos otros estados, un desahucio puede tramitarse en semanas, sin ninguna protección específica por edad.',
-    verdictLabel: '¿HABRÍA EVITADO ESTE DESAHUCIO?',
-    verdictText: 'En NY o SF, probablemente se habría alargado. En la mayoría de estados, no habría cambiado casi nada.',
-    verdictColor: '#e0c95a',
+    num: 5, flag: 'POLONIA', country: 'Polonia',
+    title: 'La ley protege explícitamente a los mayores de 75 años',
+    body: 'Polonia prohíbe desahuciar "a la calle" sin ofrecer un local sustitutivo entre el 1 de noviembre y el 31 de marzo — y da protección reforzada y explícita a personas mayores de 75 años, embarazadas y personas con discapacidad, sin importar la época del año.',
+    verdict: 'A sus 87 años, Maricarmen estaría en el grupo que la ley polaca protege por nombre propio.',
+    bg: INK,
   });
 }
 
-// SLIDE 6 — MODELO NÓRDICO (curiosidad extra)
+// SLIDE 6 — HOLANDA
 function slide6() {
   return countrySlide({
-    num: 6,
-    tag: 'SUECIA · EL MODELO OPUESTO',
-    title: 'Donde el alquiler no depende de un solo casero',
-    body: 'Suecia gestiona buena parte de su vivienda de alquiler a través de compañías públicas municipales (<b>allmännyttan</b>), con listas de espera en vez de mercado libre. Un cambio de propietario privado, sencillamente, no puede dejarte sin casa de la noche a la mañana.',
-    verdictLabel: 'LA DIFERENCIA DE FONDO',
-    verdictText: 'No es solo una ley distinta — es un mercado del alquiler organizado de otra manera.',
+    num: 6, flag: 'HOLANDA', country: 'Países Bajos',
+    title: 'Con un 30% de vivienda social, el mercado no depende de un solo casero',
+    body: 'La "huurbescherming" holandesa impide subir la renta o desahuciar sin una causa muy concreta. Y con más del 30% del parque de vivienda siendo social (frente al 1,6% de España), el alquiler de precio limitado es la norma, no la excepción.',
+    verdict: 'Muy difícil que una renta pasara de 500€ a 2.650€ de la noche a la mañana — y menos aún que acabara en desalojo.',
+    bg: CREAM, dark: false,
+  });
+}
+
+// SLIDE 7 — SUECIA
+function slide7() {
+  return countrySlide({
+    num: 7, flag: 'SUECIA', country: 'Suecia',
+    title: 'Donde el alquiler no depende de un solo propietario privado',
+    body: 'Suecia gestiona buena parte de su vivienda de alquiler a través de compañías públicas municipales (<b>allmännyttan</b>), con listas de espera en vez de mercado libre. Un cambio de propietario, sencillamente, no puede dejarte sin casa de la noche a la mañana.',
+    verdict: 'No es solo una ley distinta — es un mercado del alquiler organizado de otra manera.',
+    bg: INK,
+  });
+}
+
+// SLIDE 8 — NORUEGA
+function slide8() {
+  return countrySlide({
+    num: 8, flag: 'NORUEGA', country: 'Noruega',
+    title: 'Sin una regla dramática — pero con un sistema que reparte mejor',
+    body: 'La ley noruega (Husleieloven) protege de forma general frente a desalojos injustificados y exige causa y preaviso claros. No tiene una cláusula tan específica como la francesa o la polaca — pero un mercado del alquiler más regulado y menos concentrado hace que casos como este sean, en la práctica, mucho más raros.',
+    verdict: 'Es el recordatorio de que no todo protección se ve en una ley concreta: a veces está en cómo funciona el mercado entero.',
+    bg: CREAM, dark: false,
   });
 }
 
 // ---------------------------------------------------------------
-// SLIDE 7 — COMPARATIVA RESUMEN
+// SLIDE 9 — COMPARATIVA RESUMEN
 // ---------------------------------------------------------------
-function slide7() {
+function slide9() {
   const rows = [
-    ['España', 'Sin protección específica por edad', BAD_ICON()],
-    ['Francia', 'Prohibido sin realojo garantizado (65+)', OK_ICON()],
-    ['Alemania', 'Un juez puede suspenderlo sin fecha', OK_ICON()],
-    ['EE. UU.', 'Depende totalmente del estado/ciudad', MID_ICON()],
+    ['España', 'Sin protección específica por edad', 'bad'],
+    ['Francia', 'Prohibido sin realojo garantizado (65+)', 'ok'],
+    ['Alemania', 'Un juez puede suspenderlo sin fecha', 'ok'],
+    ['Polonia', 'Protección explícita a partir de 75 años', 'ok'],
+    ['Holanda', '30% de vivienda social amortigua el mercado', 'ok'],
+    ['Suecia / Noruega', 'Modelo estructural, no solo una ley puntual', 'mid'],
   ];
-  function OK_ICON() { return `<div style="width:34px;height:34px;border-radius:50%;background:${OK};display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:18px;">✓</div>`; }
-  function BAD_ICON() { return `<div style="width:34px;height:34px;border-radius:50%;background:#D9534F;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:18px;">✕</div>`; }
-  function MID_ICON() { return `<div style="width:34px;height:34px;border-radius:50%;background:#C9A24B;display:flex;align-items:center;justify-content:center;font-weight:900;color:${INK};font-size:16px;">~</div>`; }
-  const rowsHtml = rows.map(([country, desc, icon]) => `
-    <div style="display:flex; align-items:center; gap:22px; background:rgba(255,255,255,0.05); border:1.5px solid rgba(255,255,255,0.14);
-      border-radius:16px; padding:22px 26px; margin-bottom:16px;">
-      ${icon}
+  const icon = (t) => t === 'ok'
+    ? `<div style="width:26px;height:26px;border:1.5px solid ${OK};border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:${OK};font-size:14px;">✓</div>`
+    : t === 'bad'
+    ? `<div style="width:26px;height:26px;border:1.5px solid ${BAD};border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:${BAD};font-size:14px;">✕</div>`
+    : `<div style="width:26px;height:26px;border:1.5px solid ${GOLD};border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:${GOLD};font-size:13px;">~</div>`;
+  const rowsHtml = rows.map(([country, desc, t]) => `
+    <div style="display:flex; align-items:center; gap:22px; border-bottom:1px solid rgba(255,255,255,0.12); padding:20px 4px;">
+      ${icon(t)}
       <div style="flex:1;">
-        <div style="color:#fff; font-weight:900; font-size:24px;">${country}</div>
-        <div style="color:rgba(255,255,255,0.7); font-weight:600; font-size:19px; margin-top:4px;">${desc}</div>
+        <div style="color:#fff; font-family:${SERIF}; font-weight:700; font-size:22px;">${country}</div>
+        <div style="color:rgba(255,255,255,0.65); font-weight:500; font-size:18px; margin-top:3px;">${desc}</div>
       </div>
     </div>`).join('');
-  return `<html><head><meta charset="utf-8"><style>${RESET}
+  return `<html><head><meta charset="utf-8"><style>${T.RESET}
     .stage { background:${INK}; }
     .head { position:absolute; top:140px; left:56px; right:56px; z-index:5; }
-    .eyebrow { color:${GOLD}; font-weight:900; letter-spacing:3px; font-size:20px; text-transform:uppercase; }
-    h1 { color:#fff; font-weight:900; font-size:46px; line-height:1.12; letter-spacing:-1.5px; margin-top:16px; }
-    .rows { position:absolute; left:56px; right:56px; top:440px; z-index:5; }
+    h1 { font-family:${SERIF}; color:#fff; font-weight:700; font-size:42px; line-height:1.16; letter-spacing:-0.3px; margin-top:16px; }
+    .rows { position:absolute; left:56px; right:56px; top:400px; z-index:5; }
   </style></head><body><div class="stage">
     ${brand()}
-    ${pageTag('07 / 08')}
-    <div class="head"><div class="eyebrow">DE UN VISTAZO</div><h1>Protección frente al desahucio para mayores vulnerables</h1></div>
+    ${pageTag('09 / 10')}
+    <div class="head">${eyebrow('De un vistazo')}<h1>Protección frente al desahucio de mayores vulnerables</h1></div>
     <div class="rows">${rowsHtml}</div>
   </div></body></html>`;
 }
 
 // ---------------------------------------------------------------
-// SLIDE 8 — CIERRE REFLEXIVO + CRÉDITO
+// SLIDE 10 — CIERRE REFLEXIVO + CRÉDITO
 // ---------------------------------------------------------------
-function slide8() {
-  return `<html><head><meta charset="utf-8"><style>${RESET}
-    .stage { background:radial-gradient(ellipse at 50% 78%, rgba(143,199,166,0.16) 0%, rgba(143,199,166,0) 55%), ${INK}; }
+function slide10() {
+  return `<html><head><meta charset="utf-8"><style>${T.RESET}
+    .stage { background:${INK}; }
     .center { position:absolute; left:70px; right:70px; top:0; bottom:0; display:flex; flex-direction:column;
       align-items:center; justify-content:center; text-align:center; z-index:5; }
-    h1 { color:#fff; font-weight:900; font-size:50px; line-height:1.14; letter-spacing:-1.5px; }
+    h1 { font-family:${SERIF}; color:#fff; font-weight:700; font-style:italic; font-size:46px; line-height:1.22; letter-spacing:-0.3px; }
     h1 .hl { color:${GOLD}; }
-    .sub { color:rgba(255,255,255,0.86); font-size:26px; font-weight:600; margin-top:24px; line-height:1.42; max-width:820px; }
+    .sub { color:rgba(255,255,255,0.8); font-size:24px; font-weight:500; margin-top:24px; line-height:1.45; max-width:820px; }
     .credit { margin-top:46px; display:flex; align-items:center; gap:12px; }
-    .credit span { color:rgba(255,255,255,0.6); font-weight:700; font-size:16px; letter-spacing:1.5px; }
+    .credit span { color:rgba(255,255,255,0.55); font-weight:700; font-size:14px; letter-spacing:1.5px; }
     .foot { position:absolute; left:70px; right:70px; bottom:56px; z-index:5; text-align:center; }
-    .foot p { color:rgba(255,255,255,0.45); font-size:16px; line-height:1.55; }
+    .foot p { color:rgba(255,255,255,0.4); font-size:15px; line-height:1.55; }
   </style></head><body><div class="stage">
     <div class="center">
       <h1>No es solo una pregunta legal.<br>Es <span class="hl">qué modelo de vivienda</span> elegimos.</h1>
       <div class="sub">Cada país decide, con sus leyes, cuánto pesa el derecho a un techo frente al derecho de propiedad. España, hoy, lo resuelve distinto a sus vecinos.</div>
-      <div class="credit">${logoMark('light', 24)}<span>ANÁLISIS: NORTIK ABOGADOS</span></div>
+      <div class="credit">${logoMark('light', 22)}<span>ANÁLISIS: NORTIK ABOGADOS</span></div>
     </div>
     <div class="foot"><p>Comparativa basada en información publicada por medios de comunicación y fuentes jurídicas citadas. Contenido informativo y divulgativo, no constituye asesoría legal.</p></div>
   </div></body></html>`;
 }
 
-const slides = [slide1(), slide2(), slide3(), slide4(), slide5(), slide6(), slide7(), slide8()];
+const slides = [slide1(), slide2(), slide3(), slide4(), slide5(), slide6(), slide7(), slide8(), slide9(), slide10()];
 renderSlides(slides, __dirname);

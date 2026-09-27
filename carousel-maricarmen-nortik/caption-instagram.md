@@ -26,6 +26,13 @@ análisis.
 #derechosdelinquilino #viviendaespaña #ley #analisisjuridico
 ```
 
+## Textos de portada (clickbait probado — elige uno)
+
+- **A (el elegido, en la imagen):** "A los 87 años, la sacaron de su casa en camilla."
+- **B:** "Era legal echarla. Y no fue por el dinero."
+- **C:** "El detalle de 15 puntos que decidió que una anciana de 87 años perdiera su casa."
+- **D:** "Llevaba 71 años pagando su alquiler religiosamente. Aun así, la desahuciaron."
+
 ## Por qué funciona este gancho
 
 - **Primera línea = shock + empatía** ("87 años", "camilla", "71 años"):
