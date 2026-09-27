@@ -105,18 +105,23 @@ function slide1() {
 function slide2() {
   return `<html><head><meta charset="utf-8"><style>${RESET}
     .stage { background:${INK}; }
+    .bg { position:absolute; inset:0; overflow:hidden; }
+    .bg img { position:absolute; top:-330px; left:-40px; width:1160px; filter:blur(9px) grayscale(40%) brightness(0.5) contrast(1.05); transform:scale(1.05); }
+    .vign { position:absolute; inset:0; background:linear-gradient(160deg, rgba(14,27,36,0.55) 0%, rgba(14,27,36,0.88) 55%, rgba(14,27,36,0.97) 100%); }
     .ribbon { position:absolute; top:-120px; right:-260px; width:900px; height:520px; background:${GOLD};
-      transform:rotate(-32deg); z-index:1; }
-    .ghost { position:absolute; top:280px; right:-20px; font-size:520px; font-weight:900; color:rgba(255,255,255,0.045);
+      transform:rotate(-32deg); z-index:1; opacity:0.94; }
+    .ghost { position:absolute; top:280px; right:-20px; font-size:520px; font-weight:900; color:rgba(255,255,255,0.06);
       line-height:1; z-index:1; letter-spacing:-10px; }
     .card { position:absolute; left:56px; right:80px; bottom:150px; z-index:5; }
-    .eyebrow { display:inline-block; background:rgba(201,162,75,0.15); color:${GOLD}; font-weight:900; letter-spacing:3px;
+    .eyebrow { display:inline-block; background:rgba(201,162,75,0.18); color:${GOLD}; font-weight:900; letter-spacing:3px;
       font-size:20px; padding:9px 18px; border-radius:8px; margin-bottom:28px; }
-    h1 { color:#fff; font-weight:900; font-size:76px; line-height:1.03; letter-spacing:-2px; }
+    h1 { color:#fff; font-weight:900; font-size:76px; line-height:1.03; letter-spacing:-2px; text-shadow:0 4px 24px rgba(0,0,0,0.4); }
     h1 .hl { color:${GOLD}; }
-    .body { color:rgba(255,255,255,0.88); font-size:33px; font-weight:600; line-height:1.5; margin-top:30px; max-width:880px; }
+    .body { color:rgba(255,255,255,0.92); font-size:33px; font-weight:600; line-height:1.5; margin-top:30px; max-width:880px; }
     .body b { color:#fff; }
   </style></head><body><div class="stage">
+    <div class="bg"><img src="file://${path.join(__dirname, 'assets/martin_2.jpg')}"></div>
+    <div class="vign"></div>
     ${brand()}
     ${pageTag('02 / 08')}
     <div class="ribbon"></div>
