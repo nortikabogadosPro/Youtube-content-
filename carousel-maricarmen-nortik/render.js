@@ -10,7 +10,7 @@ const INK = '#0E1B24';      // deep navy background
 const INK2 = '#14232E';     // secondary navy (texture bg)
 const NAVY = '#1B2E3B';     // exact logo ink, used for cards on light bg
 const CREAM = '#F4F0E6';    // paper / light card bg
-const GOLD = '#C9A24B';     // accent: kickers, highlights, CTAs, ribbons
+const GOLD = '#8FC7A6';     // accent: soft light green (opción B elegida)
 const OK = '#4CAF7D';       // semantic green (checklist only)
 const BAD = '#D9534F';      // semantic red (checklist only)
 
