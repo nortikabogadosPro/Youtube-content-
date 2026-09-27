@@ -4,170 +4,315 @@ const fs = require('fs');
 
 const W = 1080, H = 1350;
 const GREEN = '#28F09A';
-const GREEN_DARK = '#0F8A55';
-const BG = '#0A0B0C';
-const BG2 = '#141517';
-
+const GREEN_DK = '#0B3D28';
+const INK = '#07080A';
+const INK2 = '#121316';
 const FONT = `-apple-system, "Helvetica Neue", Arial, sans-serif`;
+const PHOTO = path.join(__dirname, 'assets/martin_1.jpg');
 
-function shell(inner, { photo = null, photoSide = 'right', dark = 0.62 } = {}) {
-  // Source frames are 924x2000 phone-app screenshots; crop out the top status bar
-  // and bottom scrubber/filmstrip, keeping roughly face-to-chest (rows 200-1500).
-  const scale = 1.0385, imgW = Math.round(924 * scale), top = -Math.round(200 * scale), left = -Math.round((imgW - 605) / 2);
-  const photoBlock = photo ? `
-    <div class="photo-wrap" style="${photoSide === 'right' ? 'right:0;' : 'left:0;'}">
-      <img src="file://${photo}" style="width:${imgW}px; top:${top}px; left:${left}px;">
-    </div>
-    <div class="photo-fade" style="${photoSide === 'right' ? 'right:0;' : 'left:0;'}"></div>
-  ` : '';
+const RESET = `
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:${W}px; height:${H}px; overflow:hidden; font-family:${FONT}; }
+  .stage { position:relative; width:${W}px; height:${H}px; }
+  b, strong { font-weight:900; }
+`;
+
+function brand(color = '#fff', ringColor = GREEN) {
   return `
-  <html><head><meta charset="utf-8"><style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html,body { width:${W}px; height:${H}px; background:${BG}; overflow:hidden; font-family:${FONT}; }
-    .stage { position:relative; width:${W}px; height:${H}px; background:linear-gradient(160deg, ${BG} 0%, ${BG2} 100%); }
-    .photo-wrap { position:absolute; top:0; bottom:0; width:56%; overflow:hidden; opacity:0.92; }
-    .photo-wrap img { position:absolute; filter:grayscale(15%) contrast(1.08) brightness(1.02); }
-    .photo-fade { position:absolute; top:0; bottom:0; width:70%; background:linear-gradient(${photoSide === 'right' ? '90deg' : '270deg'}, ${BG} 0%, rgba(10,11,12,0.45) 38%, rgba(10,11,12,0) 72%); }
-    .dark-overlay { position:absolute; inset:0; background:rgba(0,0,0,${dark}); }
-    .brand { position:absolute; top:64px; left:64px; display:flex; align-items:center; gap:14px; z-index:5; }
-    .brand .mark { width:34px; height:34px; border:3px solid ${GREEN}; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:900; color:${GREEN}; font-size:18px; }
-    .brand .word { font-weight:800; letter-spacing:3px; color:#F5F6F5; font-size:20px; }
-    .pagenum { position:absolute; top:70px; right:64px; color:rgba(255,255,255,0.45); font-weight:700; letter-spacing:2px; font-size:16px; z-index:5; }
-    .content { position:absolute; left:64px; right:64px; bottom:96px; z-index:5; }
-    .eyebrow { color:${GREEN}; font-weight:800; letter-spacing:4px; font-size:22px; text-transform:uppercase; margin-bottom:22px; }
-    h1 { color:#FFFFFF; font-weight:900; line-height:1.04; letter-spacing:-1px; text-transform:none; }
-    .body { color:rgba(255,255,255,0.86); font-weight:500; line-height:1.5; margin-top:28px; }
-    .hl { color:${GREEN}; }
-    .swipe { position:absolute; bottom:36px; right:64px; color:${GREEN}; font-weight:800; letter-spacing:3px; font-size:20px; z-index:5; }
-    .divider { width:64px; height:6px; background:${GREEN}; border-radius:3px; margin-bottom:26px; }
-    .num-badge { position:absolute; bottom:96px; left:64px; font-size:220px; font-weight:900; color:rgba(255,255,255,0.06); line-height:1; z-index:1; }
-  </style></head>
-  <body><div class="stage">${photoBlock}<div class="dark-overlay"></div>${inner}</div></body></html>`;
+  <div style="position:absolute; top:56px; left:56px; display:flex; align-items:center; gap:12px; z-index:9;">
+    <div style="width:36px; height:36px; border:3px solid ${ringColor}; border-radius:9px; display:flex; align-items:center; justify-content:center; font-weight:900; color:${ringColor}; font-size:18px;">N</div>
+    <div style="font-weight:800; letter-spacing:3px; color:${color}; font-size:19px;">NORTIK ABOGADOS</div>
+  </div>`;
 }
 
-const slides = [];
+function dots(active, total = 8, color = GREEN, dim = 'rgba(255,255,255,0.28)') {
+  let out = `<div style="position:absolute; top:66px; left:0; right:0; display:flex; justify-content:center; gap:8px; z-index:9;">`;
+  for (let i = 1; i <= total; i++) {
+    out += `<div style="width:${i === active ? 22 : 7}px; height:7px; border-radius:4px; background:${i === active ? color : dim};"></div>`;
+  }
+  return out + `</div>`;
+}
 
-// SLIDE 1 — HOOK
-slides.push(shell(`
-  <div class="brand"><div class="mark">N</div><div class="word">NORTIK ABOGADOS</div></div>
-  <div class="content" style="bottom:120px;">
-    <div class="eyebrow">Caso real · septiembre 2026</div>
-    <h1 style="font-size:88px;">A sus 87 años,<br>la sacaron de su<br>casa en <span class="hl">CAMILLA</span>.</h1>
-    <div class="body" style="font-size:30px; max-width:820px;">Llevaba <b>71 años</b> viviendo allí. Esto es lo que la ley permite&nbsp;— y lo que no.</div>
-  </div>
-  <div class="swipe">DESLIZA →</div>
-`, { photo: path.join(__dirname, 'assets/martin_1.jpg'), photoSide: 'right', dark: 0.72 }));
+function pageTag(label, color = 'rgba(255,255,255,0.5)') {
+  return `<div style="position:absolute; top:60px; right:56px; font-weight:800; letter-spacing:2px; font-size:16px; color:${color}; z-index:9;">${label}</div>`;
+}
 
-// SLIDE 2 — EL CASO
-slides.push(shell(`
-  <div class="brand"><div class="mark">N</div><div class="word">NORTIK ABOGADOS</div></div>
-  <div class="pagenum">02 / 08</div>
-  <div class="num-badge">01</div>
-  <div class="content">
-    <div class="eyebrow">El caso</div>
-    <div class="divider"></div>
-    <h1 style="font-size:66px;">Mari Carmen,<br><span class="hl">87 años</span></h1>
-    <div class="body" style="font-size:32px; max-width:860px;">
-      Vivía en el mismo piso de Madrid desde <b>1956</b>. Al morir su madre en 2005, se subrogó en su contrato de alquiler de <b class="hl">renta antigua</b>: pagaba 500&nbsp;€/mes.
+// ---------------------------------------------------------------
+// SLIDE 1 — HOOK (full-bleed blurred portrait, max attention + trust)
+// ---------------------------------------------------------------
+function slide1() {
+  return `<html><head><meta charset="utf-8"><style>${RESET}
+    .bg { position:absolute; inset:0; overflow:hidden; background:${INK}; }
+    .bg img { position:absolute; top:-330px; left:-40px; width:1160px; filter:blur(9px) grayscale(35%) brightness(0.6) contrast(1.05); transform:scale(1.05); }
+    .vign { position:absolute; inset:0; background:
+      linear-gradient(180deg, rgba(7,8,10,0.75) 0%, rgba(7,8,10,0.30) 24%, rgba(7,8,10,0.55) 58%, rgba(7,8,10,0.97) 92%); }
+    .badge { position:absolute; top:60px; left:56px; z-index:9; display:flex; align-items:center; gap:10px;
+      background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(4px);
+      padding:10px 18px 10px 14px; border-radius:30px; max-width:560px; }
+    .badge .led { width:9px; height:9px; border-radius:50%; background:${GREEN}; box-shadow:0 0 10px ${GREEN}; }
+    .badge span { color:#fff; font-weight:800; letter-spacing:1.5px; font-size:15px; }
+    .content { position:absolute; left:56px; right:56px; bottom:150px; z-index:9; }
+    .kicker { color:${GREEN}; font-weight:900; letter-spacing:3px; font-size:24px; text-transform:uppercase; margin-bottom:18px; }
+    h1 { color:#fff; font-weight:900; font-size:92px; line-height:0.98; letter-spacing:-3px; }
+    h1 .hl { color:${GREEN}; }
+    .sub { color:rgba(255,255,255,0.92); font-size:31px; font-weight:600; line-height:1.42; margin-top:26px; max-width:900px; }
+    .cta { position:absolute; bottom:52px; left:56px; right:56px; z-index:9; display:flex; align-items:center; justify-content:space-between; }
+    .cta .pill { background:${GREEN}; color:${INK}; font-weight:900; letter-spacing:1.5px; font-size:20px; padding:18px 30px; border-radius:40px; }
+    .cta .who { color:rgba(255,255,255,0.55); font-weight:700; font-size:16px; letter-spacing:1px; }
+  </style></head><body><div class="stage">
+    <div class="bg"><img src="file://${PHOTO}"></div>
+    <div class="vign"></div>
+    <div class="badge"><div class="led"></div><span>DESPACHO DE ABOGADOS · CASO VERIFICADO</span></div>
+    ${pageTag('01 / 08', 'rgba(255,255,255,0.6)')}
+    <div class="content">
+      <div class="kicker">Esto acaba de pasar en Madrid</div>
+      <h1>A los 87 años,<br>la sacaron de<br>su casa en <span class="hl">CAMILLA</span>.</h1>
+      <div class="sub">71 años viviendo en el mismo piso. Y aun así, <b>era legal echarla</b>. Te explico cómo — y qué habría podido evitarlo.</div>
     </div>
-  </div>
-`));
+    <div class="cta"><div class="pill">DESLIZA Y ENTÉRATE →</div><div class="who">NORTIK ABOGADOS</div></div>
+  </div></body></html>`;
+}
 
-// SLIDE 3 — EL GIRO
-slides.push(shell(`
-  <div class="brand"><div class="mark">N</div><div class="word">NORTIK ABOGADOS</div></div>
-  <div class="pagenum">03 / 08</div>
-  <div class="num-badge">02</div>
-  <div class="content">
-    <div class="eyebrow">Qué cambió</div>
-    <div class="divider"></div>
-    <h1 style="font-size:62px;">El edificio<br>cambió de dueño</h1>
-    <div class="body" style="font-size:30px; max-width:860px;">
-      Un fondo de inversión compró el inmueble. Le propuso comprar su propia vivienda por <b>250.000&nbsp;€</b> y después le subió el alquiler a:
+// ---------------------------------------------------------------
+// SLIDE 2 — EL CASO (diagonal ribbon + ghost numeral)
+// ---------------------------------------------------------------
+function slide2() {
+  return `<html><head><meta charset="utf-8"><style>${RESET}
+    .stage { background:${INK}; }
+    .ribbon { position:absolute; top:-120px; right:-260px; width:900px; height:520px; background:${GREEN};
+      transform:rotate(-32deg); z-index:1; }
+    .ghost { position:absolute; top:280px; right:-20px; font-size:520px; font-weight:900; color:rgba(255,255,255,0.045);
+      line-height:1; z-index:1; letter-spacing:-10px; }
+    .card { position:absolute; left:56px; right:80px; bottom:150px; z-index:5; }
+    .eyebrow { display:inline-block; background:rgba(40,240,154,0.14); color:${GREEN}; font-weight:900; letter-spacing:3px;
+      font-size:20px; padding:9px 18px; border-radius:8px; margin-bottom:28px; }
+    h1 { color:#fff; font-weight:900; font-size:76px; line-height:1.03; letter-spacing:-2px; }
+    h1 .hl { color:${GREEN}; }
+    .body { color:rgba(255,255,255,0.88); font-size:33px; font-weight:600; line-height:1.5; margin-top:30px; max-width:880px; }
+    .body b { color:#fff; }
+  </style></head><body><div class="stage">
+    ${brand()}
+    ${pageTag('02 / 08')}
+    <div class="ribbon"></div>
+    <div class="ghost">87</div>
+    <div class="card">
+      <div class="eyebrow">EL CASO</div>
+      <h1>Mari Carmen,<br><span class="hl">71 años</span> en la<br>misma casa</h1>
+      <div class="body">Vivía en el mismo piso de Madrid desde <b>1956</b>. Al morir su madre en 2005, se subrogó en su contrato de alquiler de <b>renta antigua</b>: pagaba 500&nbsp;€/mes.</div>
     </div>
-    <div style="font-size:74px; font-weight:900; color:${GREEN}; margin-top:22px; letter-spacing:-2px;">500&nbsp;€ → 2.650&nbsp;€/mes</div>
-    <div class="body" style="font-size:26px; margin-top:16px; opacity:0.75;">Su pensión: 1.450&nbsp;€/mes.</div>
-  </div>
-`));
+  </div></body></html>`;
+}
 
-// SLIDE 4 — EL PROCESO
-slides.push(shell(`
-  <div class="brand"><div class="mark">N</div><div class="word">NORTIK ABOGADOS</div></div>
-  <div class="pagenum">04 / 08</div>
-  <div class="num-badge">03</div>
-  <div class="content">
-    <div class="eyebrow">El proceso judicial</div>
-    <div class="divider"></div>
-    <h1 style="font-size:58px;">4 intentos de<br>desahucio en<br>un año</h1>
-    <div class="body" style="font-size:27px; max-width:880px; line-height:1.7;">
-      <b class="hl">Oct 2025</b> — 1er intento, frenado 4 meses.<br>
-      <b class="hl">Jun 2026</b> — 2º intento, aplazado por vulnerabilidad.<br>
-      <b class="hl">Sept 2026</b> — se ejecuta el desalojo, con un fuerte despliegue policial.
+// ---------------------------------------------------------------
+// SLIDE 3 — EL GIRO (bold green block + rotated dark stat card)
+// ---------------------------------------------------------------
+function slide3() {
+  return `<html><head><meta charset="utf-8"><style>${RESET}
+    .stage { background:${GREEN}; }
+    .top { position:absolute; top:150px; left:56px; right:56px; z-index:5; }
+    .eyebrow { color:${INK}; font-weight:900; letter-spacing:3px; font-size:20px; opacity:0.7; }
+    h1 { color:${INK}; font-weight:900; font-size:60px; line-height:1.05; letter-spacing:-2px; margin-top:18px; max-width:820px; }
+    .lower { position:absolute; left:56px; right:56px; top:470px; bottom:56px; z-index:5;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:52px; }
+    .card { width:100%; background:${INK}; border-radius:26px;
+      transform:rotate(-2.2deg); box-shadow:0 30px 60px rgba(0,0,0,0.35); padding:56px 44px; }
+    .stat { display:flex; align-items:center; justify-content:center; gap:26px; }
+    .stat .num { font-weight:900; letter-spacing:-3px; color:#fff; font-size:64px; }
+    .stat .num.now { color:${GREEN}; font-size:76px; }
+    .stat .arrow { color:${GREEN}; font-size:46px; font-weight:900; }
+    .cap { text-align:center; color:rgba(255,255,255,0.55); font-weight:700; font-size:20px; margin-top:14px; letter-spacing:0.5px; }
+    .foot { text-align:center; }
+    .foot p { color:${INK}; font-weight:800; font-size:34px; line-height:1.4; }
+  </style></head><body><div class="stage">
+    ${brand(INK, INK)}
+    ${pageTag('03 / 08', 'rgba(7,8,10,0.55)')}
+    <div class="top">
+      <div class="eyebrow">QUÉ CAMBIÓ</div>
+      <h1>El edificio cambió de dueño. Un fondo le propuso comprarle su propia casa por 250.000&nbsp;€...</h1>
     </div>
-  </div>
-`));
+    <div class="lower">
+      <div class="card">
+        <div class="stat"><div class="num">500&nbsp;€</div><div class="arrow">→</div><div class="num now">2.650&nbsp;€</div></div>
+        <div class="cap">SU ALQUILER MENSUAL, DE UN MES A OTRO</div>
+      </div>
+      <div class="foot"><p>Su pensión: 1.450&nbsp;€/mes.<br>Imposible de pagar.</p></div>
+    </div>
+  </div></body></html>`;
+}
 
-// SLIDE 5 — RENTA ANTIGUA
-slides.push(shell(`
-  <div class="brand"><div class="mark">N</div><div class="word">NORTIK ABOGADOS</div></div>
-  <div class="pagenum">05 / 08</div>
-  <div class="num-badge">04</div>
-  <div class="content">
-    <div class="eyebrow">Lo que debes saber</div>
-    <div class="divider"></div>
-    <h1 style="font-size:56px;">¿Qué es un contrato<br>de <span class="hl">"renta antigua"</span>?</h1>
-    <div class="body" style="font-size:29px; max-width:880px;">
-      Son alquileres firmados antes de 1995, con condiciones muy protegidas. Pueden <b>heredarse o subrogarse</b> — pero cuando el inmueble cambia de propietario, se convierten en uno de los conflictos legales más complejos en España.
-    </div>
-  </div>
-`));
+// ---------------------------------------------------------------
+// SLIDE 4 — EL PROCESO (vertical timeline)
+// ---------------------------------------------------------------
+function slide4() {
+  const items = [
+    ['OCT 2025', '1er intento de desahucio', 'La defensa lo frena durante 4 meses.'],
+    ['JUN 2026', '2º intento', 'Aplazado por situación de vulnerabilidad.'],
+    ['SEPT 2026', 'Se ejecuta el desalojo', 'Con un fuerte despliegue policial y cientos de vecinos intentando impedirlo.'],
+  ];
+  const rows = items.map((it, i) => `
+    <div style="display:flex; gap:28px; align-items:flex-start; ${i < items.length - 1 ? 'margin-bottom:64px;' : ''}">
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <div style="width:22px; height:22px; border-radius:50%; background:${GREEN}; box-shadow:0 0 0 6px rgba(40,240,154,0.18); flex:none;"></div>
+        ${i < items.length - 1 ? `<div style="width:3px; flex:1; background:rgba(255,255,255,0.16); margin-top:8px; min-height:70px;"></div>` : ''}
+      </div>
+      <div>
+        <div style="color:${GREEN}; font-weight:900; letter-spacing:2px; font-size:22px;">${it[0]}</div>
+        <div style="color:#fff; font-weight:900; font-size:34px; margin-top:6px; letter-spacing:-0.5px;">${it[1]}</div>
+        <div style="color:rgba(255,255,255,0.72); font-weight:500; font-size:24px; margin-top:8px; max-width:680px; line-height:1.4;">${it[2]}</div>
+      </div>
+    </div>`).join('');
+  return `<html><head><meta charset="utf-8"><style>${RESET}
+    .stage { background:${INK}; }
+    .ghost-ico { position:absolute; top:-60px; right:-50px; font-size:420px; color:rgba(255,255,255,0.035); z-index:1;
+      font-weight:900; transform:rotate(12deg); }
+    .head { position:absolute; top:170px; left:56px; right:56px; z-index:5; }
+    .eyebrow { color:${GREEN}; font-weight:900; letter-spacing:3px; font-size:20px; text-transform:uppercase; }
+    h1 { color:#fff; font-weight:900; font-size:58px; line-height:1.05; letter-spacing:-2px; margin-top:16px; }
+    .timeline { position:absolute; left:56px; right:56px; top:430px; z-index:5; }
+    .closing { position:absolute; left:56px; right:56px; bottom:86px; z-index:5; background:rgba(40,240,154,0.08);
+      border:1.5px solid rgba(40,240,154,0.28); border-radius:18px; padding:28px 30px; }
+    .closing p { color:rgba(255,255,255,0.85); font-weight:700; font-size:24px; line-height:1.45; }
+    .closing p b { color:${GREEN}; }
+  </style></head><body><div class="stage">
+    <div class="ghost-ico">⚖</div>
+    ${brand()}
+    ${pageTag('04 / 08')}
+    <div class="head"><div class="eyebrow">EL PROCESO JUDICIAL</div><h1>4 intentos de<br>desahucio en un año</h1></div>
+    <div class="timeline">${rows}</div>
+    <div class="closing"><p><b>Casi un año de recursos y aplazamientos</b> — el tiempo que gana un buen abogado puede ser la diferencia entre un desalojo y una salida negociada.</p></div>
+  </div></body></html>`;
+}
 
-// SLIDE 6 — DERECHOS
-slides.push(shell(`
-  <div class="brand"><div class="mark">N</div><div class="word">NORTIK ABOGADOS</div></div>
-  <div class="pagenum">06 / 08</div>
-  <div class="num-badge">05</div>
-  <div class="content">
-    <div class="eyebrow">Tus derechos</div>
-    <div class="divider"></div>
-    <h1 style="font-size:52px;">¿Qué protege — y qué<br>NO — a un inquilino<br>vulnerable?</h1>
-    <div class="body" style="font-size:28px; max-width:900px; line-height:1.75; margin-top:24px;">
-      <span class="hl" style="font-weight:800;">✓</span> Se puede alegar vulnerabilidad social ante el juzgado.<br>
-      <span class="hl" style="font-weight:800;">✓</span> Servicios sociales pueden solicitar aplazamientos.<br>
-      <span style="color:#ff6b6b; font-weight:800;">✗</span> Hoy no existe un "escudo antidesahucios" permanente.<br>
-      <span style="color:#ff6b6b; font-weight:800;">✗</span> La vulnerabilidad frena el proceso, pero no siempre lo impide.
+// ---------------------------------------------------------------
+// SLIDE 5 — RENTA ANTIGUA (definition / pull-quote, dot-grid bg)
+// ---------------------------------------------------------------
+function slide5() {
+  return `<html><head><meta charset="utf-8"><style>${RESET}
+    .stage { background:${INK2}; background-image: radial-gradient(rgba(255,255,255,0.06) 1.6px, transparent 1.6px);
+      background-size: 30px 30px; }
+    .quote { position:absolute; top:220px; left:56px; font-size:220px; color:${GREEN}; opacity:0.25; font-weight:900; line-height:0.5; }
+    .quote2 { position:absolute; bottom:170px; right:56px; font-size:220px; color:${GREEN}; opacity:0.16; font-weight:900;
+      line-height:0.5; transform:rotate(180deg); }
+    .center { position:absolute; left:56px; right:56px; top:50%; transform:translateY(-46%); z-index:5; }
+    .eyebrow { color:${GREEN}; font-weight:900; letter-spacing:3px; font-size:20px; text-transform:uppercase; margin-bottom:22px; }
+    h1 { color:#fff; font-weight:900; font-size:62px; line-height:1.08; letter-spacing:-2px; }
+    h1 .hl { color:${GREEN}; }
+    .body { color:rgba(255,255,255,0.85); font-size:31px; font-weight:600; line-height:1.5; margin-top:30px; max-width:900px; }
+    .body b { color:#fff; }
+  </style></head><body><div class="stage">
+    ${brand()}
+    ${pageTag('05 / 08')}
+    <div class="quote">&ldquo;</div>
+    <div class="quote2">&ldquo;</div>
+    <div class="center">
+      <div class="eyebrow">LO QUE DEBES SABER</div>
+      <h1>¿Qué es un contrato<br>de <span class="hl">"renta antigua"</span>?</h1>
+      <div class="body">Alquileres firmados antes de 1995, con condiciones muy protegidas. Pueden <b>heredarse o subrogarse</b> — pero cuando el inmueble cambia de dueño, se convierten en uno de los conflictos legales más complejos de España.</div>
     </div>
-  </div>
-`));
+  </div></body></html>`;
+}
 
-// SLIDE 7 — CÓMO AYUDAMOS
-slides.push(shell(`
-  <div class="brand"><div class="mark">N</div><div class="word">NORTIK ABOGADOS</div></div>
-  <div class="pagenum">07 / 08</div>
-  <div class="content" style="bottom:120px;">
-    <div class="eyebrow">Cómo te protegemos</div>
-    <div class="divider"></div>
-    <h1 style="font-size:56px;">Si estás en esta<br>situación, actúa<br><span class="hl">antes de que sea tarde</span></h1>
-    <div class="body" style="font-size:28px; max-width:760px;">
-      Revisamos tu contrato, negociamos con el propietario o el fondo, y presentamos los recursos y aplazamientos que la ley permite para ganar tiempo y buscar una salida real.
-    </div>
-  </div>
-`, { photo: path.join(__dirname, 'assets/martin_1.jpg'), photoSide: 'right', dark: 0.68 }));
+// ---------------------------------------------------------------
+// SLIDE 6 — DERECHOS (checklist cards grid)
+// ---------------------------------------------------------------
+function slide6() {
+  const items = [
+    [true, 'Se puede alegar vulnerabilidad social ante el juzgado.'],
+    [true, 'Servicios sociales pueden solicitar aplazamientos.'],
+    [false, 'Hoy no existe un "escudo antidesahucios" permanente.'],
+    [false, 'La vulnerabilidad frena el proceso, pero no siempre lo impide.'],
+  ];
+  const cards = items.map(([ok, text]) => `
+    <div style="display:flex; gap:20px; align-items:flex-start; background:${ok ? 'rgba(40,240,154,0.10)' : 'rgba(255,90,90,0.08)'};
+      border:1.5px solid ${ok ? 'rgba(40,240,154,0.35)' : 'rgba(255,90,90,0.30)'}; border-radius:18px; padding:26px 28px; margin-bottom:20px;">
+      <div style="flex:none; width:38px; height:38px; border-radius:50%; background:${ok ? GREEN : '#FF5A5A'};
+        display:flex; align-items:center; justify-content:center; font-weight:900; font-size:22px; color:${INK};">${ok ? '✓' : '✕'}</div>
+      <div style="color:#fff; font-weight:700; font-size:26px; line-height:1.35; padding-top:4px;">${text}</div>
+    </div>`).join('');
+  return `<html><head><meta charset="utf-8"><style>${RESET}
+    .stage { background:${INK}; }
+    .head { position:absolute; top:160px; left:56px; right:56px; z-index:5; }
+    .eyebrow { color:${GREEN}; font-weight:900; letter-spacing:3px; font-size:20px; text-transform:uppercase; }
+    h1 { color:#fff; font-weight:900; font-size:50px; line-height:1.08; letter-spacing:-1.5px; margin-top:16px; }
+    .grid { position:absolute; left:56px; right:56px; top:470px; z-index:5; }
+    .takeaway { position:absolute; left:56px; right:56px; bottom:86px; z-index:5; background:${GREEN};
+      border-radius:18px; padding:30px 32px; }
+    .takeaway p { color:${INK}; font-weight:800; font-size:26px; line-height:1.4; }
+  </style></head><body><div class="stage">
+    ${brand()}
+    ${pageTag('06 / 08')}
+    <div class="head"><div class="eyebrow">TUS DERECHOS</div><h1>¿Qué protege — y qué NO —<br>a un inquilino vulnerable?</h1></div>
+    <div class="grid">${cards}</div>
+    <div class="takeaway"><p>💡 En resumen: la ley te da herramientas para ganar tiempo — pero solo si las usas a tiempo.</p></div>
+  </div></body></html>`;
+}
 
-// SLIDE 8 — CTA
-slides.push(shell(`
-  <div class="brand" style="top:64px; left:0; right:0; justify-content:center;"><div class="mark">N</div><div class="word">NORTIK ABOGADOS</div></div>
-  <div style="position:absolute; top:0; left:0; right:0; bottom:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; z-index:5; padding:0 90px;">
-    <h1 style="font-size:64px; color:#fff;">No esperes a la carta<br>del <span class="hl">juzgado</span>.</h1>
-    <div class="body" style="font-size:30px; margin-top:26px;">Escríbenos. Una consulta a tiempo<br>puede cambiarlo todo.</div>
-    <div style="margin-top:56px; padding:20px 46px; border:3px solid ${GREEN}; border-radius:60px; color:${GREEN}; font-weight:800; letter-spacing:2px; font-size:26px;">
-      📩 ESCRÍBENOS · LINK EN BIO
+// ---------------------------------------------------------------
+// SLIDE 7 — CÓMO AYUDAMOS (photo bleed left + floating white card)
+// ---------------------------------------------------------------
+function slide7() {
+  return `<html><head><meta charset="utf-8"><style>${RESET}
+    .bg { position:absolute; inset:0; overflow:hidden; background:${INK}; }
+    .bg img { position:absolute; top:-260px; left:-260px; width:1160px; filter:blur(6px) grayscale(30%) brightness(0.55) contrast(1.05); }
+    .vign { position:absolute; inset:0; background:linear-gradient(0deg, rgba(7,8,10,0.96) 0%, rgba(7,8,10,0.55) 40%, rgba(7,8,10,0.15) 70%); }
+    .eyebrow { color:${GREEN}; font-weight:900; letter-spacing:3px; font-size:20px; text-transform:uppercase; }
+    .headwrap { position:absolute; top:200px; left:56px; right:56px; z-index:6; }
+    h1 { color:#fff; font-weight:900; font-size:58px; line-height:1.05; letter-spacing:-2px; margin-top:16px; }
+    h1 .hl { color:${GREEN}; }
+    .card { position:absolute; left:56px; right:56px; bottom:130px; z-index:6; background:rgba(255,255,255,0.97);
+      border-radius:22px; padding:38px 40px; box-shadow:0 30px 60px rgba(0,0,0,0.4); }
+    .card .t { color:${INK}; font-weight:900; font-size:24px; letter-spacing:-0.5px; margin-bottom:18px; }
+    .card li { list-style:none; display:flex; gap:14px; align-items:flex-start; color:${INK}; font-weight:600; font-size:24px;
+      line-height:1.4; margin-bottom:14px; }
+    .card li:last-child { margin-bottom:0; }
+    .card li .dot { flex:none; width:10px; height:10px; border-radius:50%; background:${GREEN}; margin-top:11px; }
+  </style></head><body><div class="stage">
+    <div class="bg"><img src="file://${PHOTO}"></div>
+    <div class="vign"></div>
+    ${brand()}
+    ${pageTag('07 / 08')}
+    <div class="headwrap">
+      <div class="eyebrow">CÓMO TE PROTEGEMOS</div>
+      <h1>Si estás en esta situación,<br>actúa <span class="hl">antes de que sea tarde</span></h1>
     </div>
-  </div>
-  <div style="position:absolute; bottom:56px; left:64px; right:64px; z-index:5; color:rgba(255,255,255,0.45); font-size:18px; line-height:1.5; text-align:center;">
-    Caso basado en información publicada por medios de comunicación. Contenido informativo y divulgativo, no sustituye una asesoría legal personalizada — cada caso requiere su propio análisis.
-  </div>
-`));
+    <div class="card">
+      <div class="t">EN NORTIK ABOGADOS:</div>
+      <ul>
+        <li><div class="dot"></div>Revisamos tu contrato de alquiler al detalle.</li>
+        <li><div class="dot"></div>Negociamos con el propietario o el fondo.</li>
+        <li><div class="dot"></div>Presentamos recursos y aplazamientos legales para ganar tiempo real.</li>
+      </ul>
+    </div>
+  </div></body></html>`;
+}
+
+// ---------------------------------------------------------------
+// SLIDE 8 — CTA (gradient bleed, big button)
+// ---------------------------------------------------------------
+function slide8() {
+  return `<html><head><meta charset="utf-8"><style>${RESET}
+    .stage { background:linear-gradient(150deg, ${INK} 0%, ${INK} 45%, ${GREEN_DK} 78%, ${GREEN} 130%); }
+    .center { position:absolute; left:70px; right:70px; top:0; bottom:0; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; text-align:center; z-index:5; }
+    h1 { color:#fff; font-weight:900; font-size:70px; line-height:1.06; letter-spacing:-2.5px; }
+    h1 .hl { color:${GREEN}; }
+    .sub { color:rgba(255,255,255,0.86); font-size:30px; font-weight:600; margin-top:26px; line-height:1.4; }
+    .btn { margin-top:52px; background:${GREEN}; color:${INK}; font-weight:900; letter-spacing:1.5px; font-size:24px;
+      padding:22px 46px; border-radius:50px; }
+    .foot { position:absolute; left:70px; right:70px; bottom:64px; z-index:5; text-align:center; }
+    .foot p { color:rgba(255,255,255,0.55); font-size:17px; line-height:1.55; }
+  </style></head><body><div class="stage">
+    ${brand()}
+    <div class="center">
+      <h1>No esperes a la<br>carta del <span class="hl">juzgado</span>.</h1>
+      <div class="sub">Escríbenos. Una consulta a tiempo<br>puede cambiarlo todo.</div>
+      <div class="btn">📩 ESCRÍBENOS · LINK EN BIO</div>
+    </div>
+    <div class="foot"><p>Caso basado en información publicada por medios de comunicación. Contenido informativo y divulgativo, no sustituye una asesoría legal personalizada.</p></div>
+  </div></body></html>`;
+}
+
+const slides = [slide1(), slide2(), slide3(), slide4(), slide5(), slide6(), slide7(), slide8()];
 
 (async () => {
   const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-sandbox', '--allow-file-access-from-files'] });
