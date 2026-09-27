@@ -330,14 +330,18 @@ function slide8() {
     .sub { color:rgba(255,255,255,0.86); font-size:30px; font-weight:600; margin-top:26px; line-height:1.4; }
     .btn { margin-top:52px; background:${GOLD}; color:${INK}; font-weight:900; letter-spacing:1.5px; font-size:24px;
       padding:22px 46px; border-radius:50px; }
+    .handle { margin-top:24px; color:${GOLD}; font-weight:800; letter-spacing:1.5px; font-size:20px; }
+    .biglogo { display:flex; flex-direction:column; align-items:center; gap:14px; margin-bottom:46px; }
+    .biglogo .word { font-weight:800; letter-spacing:4px; color:#fff; font-size:24px; }
     .foot { position:absolute; left:70px; right:70px; bottom:64px; z-index:5; text-align:center; }
     .foot p { color:rgba(255,255,255,0.5); font-size:17px; line-height:1.55; }
   </style></head><body><div class="stage">
-    ${brand()}
     <div class="center">
+      <div class="biglogo">${logoMark('light', 56)}<div class="word">NORTIK ABOGADOS</div></div>
       <h1>No esperes a la<br>carta del <span class="hl">juzgado</span>.</h1>
       <div class="sub">Escríbenos. Una consulta a tiempo<br>puede cambiarlo todo.</div>
       <div class="btn">📩 ESCRÍBENOS · LINK EN BIO</div>
+      <div class="handle">@nortikabogados</div>
     </div>
     <div class="foot"><p>Caso basado en información publicada por medios de comunicación. Contenido informativo y divulgativo, no sustituye una asesoría legal personalizada.</p></div>
   </div></body></html>`;
