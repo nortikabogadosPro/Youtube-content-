@@ -6,44 +6,39 @@
 A sus 87 años, la sacaron de su casa en camilla. Llevaba 71 viviendo allí. 👵🏠
 
 Así es el caso de Mari Carmen, la mujer de 87 años desahuciada en Madrid tras
-71 años en el mismo piso — y así es como una subida de alquiler de 500€ a
-2.650€ puede acabar, legalmente, en un desalojo con la policía en la puerta.
+71 años en el mismo piso. Pero el motivo legal real no fue solo la subida del
+alquiler — hay un detalle técnico en su contrato que casi ningún medio contó.
 
-En NORTIK Abogados te explicamos qué es un contrato de renta antigua, qué
-protege realmente a un inquilino vulnerable en España en 2026 — y qué no —
-y qué puedes hacer tú si te enfrentas a una situación parecida.
+Te explicamos qué es un contrato de renta antigua, cuál fue el verdadero
+motivo jurídico del desahucio, y qué protege realmente a un inquilino
+vulnerable en España en 2026 — y qué no.
 
 👉 Desliza el carrusel completo.
 💾 Guárdalo, te puede servir a ti o a alguien que conozcas.
-🔁 Compártelo — cuantas más personas conozcan sus derechos, mejor.
+🔁 Compártelo — cuantas más personas conozcan cómo funciona esto, mejor.
 
 ⚠️ Caso basado en información publicada por medios de comunicación
-(El Diario, CNN, Amnistía Internacional). Contenido informativo y
-divulgativo: no sustituye una asesoría legal personalizada, cada caso
-requiere su propio análisis.
-
-📩 ¿Tienes una situación similar? Escríbenos — link en bio.
+(El Diario, CNN, El Español). Contenido informativo y divulgativo: no
+sustituye una asesoría legal personalizada, cada caso requiere su propio
+análisis.
 
 #desahucio #maricarmen #crisisdevivienda #alquiler #rentaantigua
-#derechosdelinquilino #abogadodealquiler #abogadosmadrid #nortikabogados
-#viviendaespaña #ley #despachodeabogados
+#derechosdelinquilino #viviendaespaña #ley #analisisjuridico
 ```
 
 ## Por qué funciona este gancho
 
 - **Primera línea = shock + empatía** ("87 años", "camilla", "71 años"):
   detiene el scroll sin necesidad de spoilear el ángulo legal.
-- **Segundo párrafo = el dato concreto** (500€ → 2.650€): números exactos
-  generan más guardados/comentarios que frases genéricas.
-- **Tercer párrafo = la autoridad del despacho**: pasa de "noticia" a
-  "contenido educativo de un abogado", que es lo que vende NORTIK.
+- **Segunda línea = curiosidad genuina** ("un detalle técnico que casi ningún
+  medio contó"): promete información que no es la que ya circula, en vez de
+  repetir lo obvio.
+- **Sin venta**: nada de "escríbenos" ni "link en bio" — el carrusel se
+  sostiene solo como contenido informativo, que es lo que pediste.
 - **CTA triple (desliza / guarda / comparte)**: cada verbo empuja una métrica
   distinta de Instagram (retención, saves, alcance) en vez de pedir solo "like".
-- **Disclaimer visible pero no protagonista**: protege al despacho sin
-  romper el ritmo del gancho.
-- **Hashtags mixtos**: términos de la noticia (más búsqueda/alcance del
-  momento) + términos de nicho legal (audiencia cualificada que puede
-  convertir en cliente).
+- **Hashtags de noticia + de nicho legal**: alcance del momento sin depender
+  de una marca.
 
 ## Notas de publicación
 
