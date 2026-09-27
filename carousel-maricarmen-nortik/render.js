@@ -17,11 +17,24 @@ const RESET = `
   b, strong { font-weight:900; }
 `;
 
-function brand(color = '#fff', ringColor = GREEN) {
+function logoMark(variant = 'light', size = 40) {
+  const onGreenBg = variant === 'dark';
+  const markBg = onGreenBg ? INK : GREEN;
+  const markColor = onGreenBg ? GREEN : INK;
+  return `<div style="width:${size}px; height:${size}px; border-radius:${Math.round(size * 0.27)}px; background:${markBg};
+    display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,0.28); flex:none;">
+    <span style="font-weight:900; color:${markColor}; font-size:${Math.round(size * 0.55)}px; font-family:Georgia, 'Times New Roman', serif; letter-spacing:-1px;">N</span>
+  </div>`;
+}
+
+function brand(variant = 'light', pos = 'top-left') {
+  const onGreenBg = variant === 'dark';
+  const textColor = onGreenBg ? INK : '#fff';
+  const posStyle = pos === 'top-left' ? 'top:56px; left:56px;' : pos;
   return `
-  <div style="position:absolute; top:56px; left:56px; display:flex; align-items:center; gap:12px; z-index:9;">
-    <div style="width:36px; height:36px; border:3px solid ${ringColor}; border-radius:9px; display:flex; align-items:center; justify-content:center; font-weight:900; color:${ringColor}; font-size:18px;">N</div>
-    <div style="font-weight:800; letter-spacing:3px; color:${color}; font-size:19px;">NORTIK ABOGADOS</div>
+  <div style="position:absolute; ${posStyle} display:flex; align-items:center; gap:12px; z-index:9;">
+    ${logoMark(variant)}
+    <div style="font-weight:800; letter-spacing:3px; color:${textColor}; font-size:19px;">NORTIK ABOGADOS</div>
   </div>`;
 }
 
@@ -58,18 +71,34 @@ function slide1() {
     .sub { color:rgba(255,255,255,0.92); font-size:31px; font-weight:600; line-height:1.42; margin-top:26px; max-width:900px; }
     .cta { position:absolute; bottom:52px; left:56px; right:56px; z-index:9; display:flex; align-items:center; justify-content:space-between; }
     .cta .pill { background:${GREEN}; color:${INK}; font-weight:900; letter-spacing:1.5px; font-size:20px; padding:18px 30px; border-radius:40px; }
-    .cta .who { color:rgba(255,255,255,0.55); font-weight:700; font-size:16px; letter-spacing:1px; }
+    .cta .who { display:flex; align-items:center; gap:10px; }
+    .cta .who span { color:rgba(255,255,255,0.6); font-weight:700; font-size:15px; letter-spacing:1.5px; }
+    .clip { position:absolute; top:118px; right:56px; width:360px; background:#F1ECDD; color:${INK};
+      padding:22px 24px 18px; border-radius:2px; transform:rotate(-3.5deg); box-shadow:0 22px 34px rgba(0,0,0,0.5); z-index:8;
+      font-family:Georgia,'Times New Roman',serif; }
+    .clip .tape { position:absolute; top:-13px; left:50%; transform:translateX(-50%) rotate(-2deg); width:86px; height:24px;
+      background:rgba(255,255,255,0.4); border:1px solid rgba(255,255,255,0.55); }
+    .clip .src { font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a1f1f;
+      margin-bottom:9px; font-family:${FONT}; }
+    .clip .headline { font-size:19px; font-weight:700; line-height:1.28; }
+    .clip .foot { margin-top:10px; font-size:13px; color:#5a5a5a; font-style:italic; font-family:${FONT}; }
   </style></head><body><div class="stage">
     <div class="bg"><img src="file://${PHOTO}"></div>
     <div class="vign"></div>
     <div class="badge"><div class="led"></div><span>DESPACHO DE ABOGADOS · CASO VERIFICADO</span></div>
     ${pageTag('01 / 08', 'rgba(255,255,255,0.6)')}
+    <div class="clip">
+      <div class="tape"></div>
+      <div class="src">Portada nacional</div>
+      <div class="headline">"Conmoción social y política por el desahucio de Maricarmen"</div>
+      <div class="foot">— El País</div>
+    </div>
     <div class="content">
       <div class="kicker">Esto acaba de pasar en Madrid</div>
       <h1>A los 87 años,<br>la sacaron de<br>su casa en <span class="hl">CAMILLA</span>.</h1>
       <div class="sub">71 años viviendo en el mismo piso. Y aun así, <b>era legal echarla</b>. Te explico cómo — y qué habría podido evitarlo.</div>
     </div>
-    <div class="cta"><div class="pill">DESLIZA Y ENTÉRATE →</div><div class="who">NORTIK ABOGADOS</div></div>
+    <div class="cta"><div class="pill">DESLIZA Y ENTÉRATE →</div><div class="who">${logoMark('light', 30)}<span>NORTIK ABOGADOS</span></div></div>
   </div></body></html>`;
 }
 
@@ -124,7 +153,7 @@ function slide3() {
     .foot { text-align:center; }
     .foot p { color:${INK}; font-weight:800; font-size:34px; line-height:1.4; }
   </style></head><body><div class="stage">
-    ${brand(INK, INK)}
+    ${brand('dark')}
     ${pageTag('03 / 08', 'rgba(7,8,10,0.55)')}
     <div class="top">
       <div class="eyebrow">QUÉ CAMBIÓ</div>
