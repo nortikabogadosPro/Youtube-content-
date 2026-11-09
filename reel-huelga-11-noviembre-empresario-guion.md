@@ -35,8 +35,8 @@
 `Texto:` **NO PUEDES PREGUNTAR QUIÉN HARÁ HUELGA**
 
 **2. "¿Puedes contratar a alguien de fuera para cubrir a los huelguistas?"**
-> "No. Es esquirolaje externo: está prohibido contratar personal, una ETT o una subcontrata para sustituir a quien hace huelga."
-`Texto:` **ESQUIROLAJE EXTERNO = PROHIBIDO**
+> "No. Eso se llama esquirolaje: sustituir a quien hace huelga para que no se note su ausencia. Está prohibido contratar personal, una ETT o una subcontrata para eso."
+`Texto:` **ESQUIROLAJE = SUSTITUIR AL HUELGUISTA (PROHIBIDO)**
 
 **3. "¿Puedes reorganizar a la plantilla que sí trabaja para que cubra las tareas de los huelguistas?"**
 > "Tampoco. Es esquirolaje interno, y el Tribunal Constitucional lo ha declarado ilegal."
