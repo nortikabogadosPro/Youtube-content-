@@ -77,3 +77,52 @@ subir la imagen): `50.000 € SIN INTERESES PARA TU ENTRADA (letra pequeña)`
   Añadir desde el carrete".
 - TikTok: en "Seleccionar portada" usa la imagen subida, o el texto de
   portada de arriba sobre el fotograma de "50.000 €".
+
+---
+
+## YouTube Shorts — título y descripción
+
+**Título (elige uno, máx. ~60 caracteres para que no se corte):**
+
+- **A (recomendado):** `50.000 € SIN INTERESES para tu entrada (pero ojo) 🏠`
+- **B:** `El Gobierno te presta la ENTRADA de tu casa… ¿truco?`
+- **C:** `Línea Tu Casa: 50.000 € sin intereses y la letra pequeña`
+
+**Descripción (copy listo para pegar):**
+
+```
+El Gobierno te presta hasta 50.000 € para la entrada de tu casa, sin
+intereses ni comisiones. Se llama Línea Tu Casa (préstamo público del ICO)
+y te explicamos cómo funciona y la letra pequeña que casi nadie cuenta.
+
+✅ Cubre hasta el 20 % del precio de la vivienda (la parte que el banco no financia)
+✅ 0 % intereses y 0 comisiones
+✅ Empiezas a devolverlo cuando terminas la hipoteca, y tienes 10 años
+
+⚠️ Letra pequeña:
+• Si vendes la casa, solo al precio que pagaste actualizado al IPC.
+• Si la alquilas, habrá un precio máximo.
+
+📅 Todavía no se puede pedir: el Congreso tumbó el decreto en octubre, el
+Gobierno lo ha vuelto a aprobar y se vota, previsiblemente, el 12 de
+noviembre. Si sale adelante, faltará que se fijen los requisitos.
+
+👉 Lo que sí puedes pedir ya: el Aval ICO. Menores de 35 años o con hijos
+a cargo pueden financiar hasta el 95 % de la hipoteca.
+
+🔔 Suscríbete: en cuanto se vote te contamos si sale y cómo pedirlo.
+
+⚖️ Nortik Abogados · Contenido informativo y divulgativo, no sustituye
+asesoría legal personalizada.
+
+#Shorts #LineaTuCasa #ICO #AvalICO #PrimeraVivienda #Hipoteca #ComprarCasa #Vivienda
+```
+
+**Notas para YouTube:**
+- Los 3 primeros hashtags de la descripción aparecen encima del título:
+  por eso van `#Shorts #LineaTuCasa #ICO` primero.
+- Etiquetas (campo "Etiquetas" en YouTube Studio):
+  `linea tu casa, prestamo ico, aval ico, entrada piso, primera vivienda,
+  hipoteca jovenes, 50000 euros entrada, ayudas vivienda 2026, nortik abogados`
+- Si lo subes después del 12 de noviembre, cambia el párrafo 📅 por el
+  resultado de la votación.
