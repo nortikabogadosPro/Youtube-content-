@@ -18,10 +18,11 @@ const BASE = `
   @font-face { font-family:'Bebas'; src:url('file://${FONT_FILE}'); }
   * { margin:0; padding:0; box-sizing:border-box; }
   html,body { width:${W}px; height:${H}px; overflow:hidden; font-family:'Inter', Arial, sans-serif; }
-  .stage { position:relative; width:${W}px; height:${H}px; background:${BG}; color:#fff; overflow:hidden; }
+  .stage > * { z-index:1; } .stage { position:relative; width:${W}px; height:${H}px; background:${BG}; color:#fff; overflow:hidden; }
   .label { position:absolute; top:84px; left:80px; color:${GREEN}; font-weight:700; font-size:30px; letter-spacing:0.5px; text-transform:uppercase; }
   .page { position:absolute; top:88px; right:80px; color:rgba(255,255,255,0.4); font-weight:600; font-size:24px; letter-spacing:1px; }
-  .h { font-family:'Bebas', Impact, sans-serif; font-weight:400; text-transform:uppercase; line-height:0.95; letter-spacing:0.5px; }
+  .body, .label { text-shadow:0 2px 12px rgba(0,0,0,0.85); }
+  .h { font-family:'Bebas', Impact, sans-serif; text-shadow:0 4px 24px rgba(0,0,0,0.6); font-weight:400; text-transform:uppercase; line-height:0.95; letter-spacing:0.5px; }
   .g { color:${GREEN}; } .r { color:${RED}; } .w { color:#fff; }
   .body { font-size:38px; line-height:1.38; color:rgba(255,255,255,0.92); font-weight:400; }
   .body b { font-weight:700; color:#fff; }
@@ -43,9 +44,26 @@ function squiggle(width = 780, color = GREEN) {
   return `<svg width="${width + 4}" height="20" style="display:block"><path d="${d}" stroke="${color}" stroke-width="7" fill="none" stroke-linecap="round"/></svg>`;
 }
 
+// Fondos fotográficos en B/N (generados con IA) — solo en 6 slides; el resto, negro liso.
+const PHOTOS = {
+  1: { file: 'bg_ambulancia.png', pos: 'center 40%' },
+  2: { file: 'bg_manifestacion.png', pos: 'center 30%' },
+  3: { file: 'bg_urgencias.png', pos: 'center 30%' },
+  6: { file: 'bg_anden.png', pos: 'center 40%' },
+  7: { file: 'bg_mazo.png', pos: 'center 60%' },
+  8: { file: 'bg_megafono.png', pos: 'center 30%' },
+};
+function photoBg({ file, pos }) {
+  return `<div style="position:absolute; inset:0; z-index:0;">
+    <div style="position:absolute; inset:0; background:url('file://${path.join(__dirname, 'assets', file)}') ${pos} / cover no-repeat; filter:grayscale(100%) contrast(1.15) brightness(0.95);"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 22%, rgba(0,0,0,0.5) 46%, rgba(0,0,0,0.82) 72%, rgba(0,0,0,0.95) 100%);"></div>
+  </div>`;
+}
+
 function page(n, label, inner, { bg = BG, swipe = true, extraCss = '' } = {}) {
   return `<html><head><meta charset="utf-8"><style>${BASE}${extraCss}</style></head><body>
   <div class="stage" style="background:${bg}">
+    ${PHOTOS[n] ? photoBg(PHOTOS[n]) : ''}
     <div class="label">${label}</div>
     <div class="page">${String(n).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}</div>
     ${inner}
